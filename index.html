@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>甜甜膩膩蛋糕專門店 | 甜而不膩的精品輕食早午餐</title>
+    
+    <!-- 引入 Google Fonts: Noto Serif TC (標題) & Noto Sans TC (內文) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+    
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-primary': '#2D241E', // 深巧克力棕
+                        'brand-accent': '#C5A059',  // 香檳金
+                        'brand-light': '#F9F7F2',   // 奶油白背景
+                        'brand-dark': '#1A1A1A',    // 純黑
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif TC"', 'serif'],
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* 嚴格執行直角規範：全域移除圓角 */
+        * {
+            border-radius: 0 !important;
+        }
+
+        /* 平滑捲動 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 首屏漸變過度 */
+        .hero-overlay {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+        }
+
+        /* 圖片懸停縮放效果 */
+        .img-zoom {
+            overflow: hidden;
+        }
+        .img-zoom img {
+            transition: transform 0.5s ease;
+        }
+        .img-zoom:hover img {
+            transform: scale(1.1);
+        }
+
+        /* 自定義捲動條 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F9F7F2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C5A059;
+        }
+    </style>
+</head>
+<body class="font-sans text-brand-primary bg-brand-light">
+
+    <!-- 導航列 -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="font-serif text-2xl font-black tracking-tighter uppercase">甜甜膩膩</span>
+                <span class="hidden sm:block text-[10px] tracking-[0.3em] border-l border-gray-300 pl-3 text-gray-400">SWEET & RICH</span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-10 text-sm font-bold tracking-widest uppercase">
+                <a href="#about" class="hover:text-brand-accent transition-colors">品牌故事</a>
+                <a href="#products" class="hover:text-brand-accent transition-colors">精選菜單</a>
+                <a href="#contact" class="hover:text-brand-accent transition-colors">聯絡我們</a>
+                <a href="tel:02-1234-5678" class="bg-brand-primary text-white px-6 py-2 hover:bg-brand-accent transition-colors">
+                    立即預約
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首屏區塊 (Hero Section) -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- 背景圖 (千層蛋糕) -->
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&q=80&w=2000" 
+                 alt="[千層蛋糕]" class="w-full h-full object-cover">
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <!-- 文字內容 -->
+        <div class="relative z-10 text-center text-white px-6">
+            <h1 class="text-6xl md:text-9xl font-serif font-black mb-6 tracking-tight">
+                甜而不膩
+            </h1>
+            <p class="text-xl md:text-2xl font-light mb-12 tracking-[0.2em] opacity-90">
+                最健康的品質；最美味的口感。
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="tel:02-1234-5678" class="px-10 py-5 bg-brand-accent text-white font-bold tracking-widest hover:bg-white hover:text-brand-accent transition-all w-full sm:w-auto">
+                    立即來電訂購
+                </a>
+                <a href="#products" class="px-10 py-5 border border-white text-white font-bold tracking-widest hover:bg-white hover:text-brand-primary transition-all w-full sm:w-auto">
+                    瀏覽精選作品
+                </a>
+            </div>
+        </div>
+
+        <!-- 裝飾性 SVG 動畫元件 (慢速旋轉) -->
+        <div class="absolute bottom-10 right-10 animate-[spin_10s_linear_infinite] opacity-20 hidden lg:block">
+            <svg width="150" height="150" viewBox="0 0 200 200" fill="none" stroke="white" stroke-width="1">
+                <circle cx="100" cy="100" r="90" stroke-dasharray="10 20" />
+                <text font-family="serif" font-size="12" fill="white">
+                    <textPath href="#circlePath">ESTABLISHED 2014 • HANDMADE QUALITY • </textPath>
+                </text>
+                <path id="circlePath" d="M 100, 100 m -60, 0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- 品牌使命故事 (Brand Mission) -->
+    <section id="about" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+            <div class="relative">
+                <div class="img-zoom aspect-[4/5] bg-gray-200">
+                    <img src="https://images.unsplash.com/photo-1517433367423-c7e5b0f35086?auto=format&fit=crop&q=80&w=1000" 
+                         alt="[甜點師手作過程]" class="w-full h-full object-cover">
+                </div>
+                <!-- 裝飾框架 -->
+                <div class="absolute -bottom-6 -right-6 w-full h-full border-2 border-brand-accent -z-10"></div>
+            </div>
+            
+            <div>
+                <span class="text-brand-accent font-bold tracking-[0.5em] text-sm block mb-4 uppercase">Our Philosophy</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-black mb-8 leading-tight">
+                    在甜美與健康之間<br>尋找最完美的平衡。
+                </h2>
+                <p class="text-gray-600 leading-loose mb-8 text-lg">
+                    「甜甜膩膩」創立於一個陽光午後。我們相信甜點不應該只是負擔，而是一場感官的洗禮。選用頂級日本海藻糖與法國進口發酵奶油，每一口都能感受到食材最純粹的原味，而非人工添加劑的堆砌。
+                </p>
+                <div class="grid grid-cols-2 gap-10 border-t border-gray-200 pt-10">
+                    <div>
+                        <h4 class="font-serif text-3xl font-black text-brand-accent mb-2">100%</h4>
+                        <p class="text-xs tracking-widest text-gray-400 uppercase">Natural Ingredients</p>
+                    </div>
+                    <div>
+                        <h4 class="font-serif text-3xl font-black text-brand-accent mb-2">48h</h4>
+                        <p class="text-xs tracking-widest text-gray-400 uppercase">Slow Proofing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 精選服務/產品展示 (Product Showcase) -->
+    <section id="products" class="py-24 bg-brand-primary text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <span class="text-brand-accent font-bold tracking-[0.5em] text-sm block mb-4">SIGNATURE COLLECTIONS</span>
+                    <h2 class="text-4xl md:text-5xl font-serif font-black">匠心手作精選</h2>
+                </div>
+                <p class="text-gray-400 max-w-sm text-sm tracking-widest leading-relaxed">
+                    我們提供現點現做的法式蛋糕與輕食早午餐，每一款都是甜點師的藝術結晶。
+                </p>
+            </div>
+
+            <!-- 產品網格 (直角卡片) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-l border-t border-white/10">
+                <!-- 產品 1: 千層 -->
+                <div class="border-r border-b border-white/10 p-8 group hover:bg-brand-accent transition-all duration-500">
+                    <div class="img-zoom aspect-square mb-8">
+                        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600" alt="[千層蛋糕]" class="w-full h-full object-cover grayscale group-hover:grayscale-0">
+                    </div>
+                    <h3 class="text-xl font-serif font-black mb-4">法式經典千層</h3>
+                    <p class="text-gray-400 text-sm group-hover:text-white transition-colors mb-6">32層極薄蛋皮與馬達加斯加香草籽奶油的完美共舞。</p>
+                    <span class="text-brand-accent font-black group-hover:text-brand-primary">NT$ 220</span>
+                </div>
+
+                <!-- 產品 2: 可麗露 -->
+                <div class="border-r border-b border-white/10 p-8 group hover:bg-brand-accent transition-all duration-500">
+                    <div class="img-zoom aspect-square mb-8">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=600" alt="[可麗露]" class="w-full h-full object-cover grayscale group-hover:grayscale-0">
+                    </div>
+                    <h3 class="text-xl font-serif font-black mb-4">波爾多可麗露</h3>
+                    <p class="text-gray-400 text-sm group-hover:text-white transition-colors mb-6">外殼焦香脆口，內層如布丁般軟嫩 Q 彈的法式傳統滋味。</p>
+                    <span class="text-brand-accent font-black group-hover:text-brand-primary">NT$ 95</span>
+                </div>
+
+                <!-- 產品 3: 草莓蛋糕 -->
+                <div class="border-r border-b border-white/10 p-8 group hover:bg-brand-accent transition-all duration-500">
+                    <div class="img-zoom aspect-square mb-8">
+                        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&q=80&w=600" alt="[草莓蛋糕]" class="w-full h-full object-cover grayscale group-hover:grayscale-0">
+                    </div>
+                    <h3 class="text-xl font-serif font-black mb-4">季節限定草莓戚風</h3>
+                    <p class="text-gray-400 text-sm group-hover:text-white transition-colors mb-6">嚴選當季草莓，搭配北海道鮮乳鮮奶油。清甜不負擔。</p>
+                    <span class="text-brand-accent font-black group-hover:text-brand-primary">NT$ 250</span>
+                </div>
+
+                <!-- 產品 4: 咖啡 -->
+                <div class="border-r border-b border-white/10 p-8 group hover:bg-brand-accent transition-all duration-500">
+                    <div class="img-zoom aspect-square mb-8">
+                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=600" alt="[手沖咖啡]" class="w-full h-full object-cover grayscale group-hover:grayscale-0">
+                    </div>
+                    <h3 class="text-xl font-serif font-black mb-4">單品精品手沖</h3>
+                    <p class="text-gray-400 text-sm group-hover:text-white transition-colors mb-6">自家烘焙淺焙豆，展現豐富的花果酸香與持久餘韻。</p>
+                    <span class="text-brand-accent font-black group-hover:text-brand-primary">NT$ 180</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 用戶信任感區塊 (Testimonials) -->
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h3 class="text-brand-accent font-bold tracking-[0.5em] text-sm mb-4">REVIEWS</h3>
+                <h2 class="text-4xl font-serif font-black text-brand-primary italic">品味者的真實讚美</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="border border-gray-100 p-10 hover:shadow-2xl transition-shadow relative">
+                    <span class="text-6xl font-serif text-brand-accent/20 absolute top-4 left-4">“</span>
+                    <p class="text-gray-600 mb-8 leading-relaxed italic">
+                        「這是我吃過最平衡的千層蛋糕。甜度恰到好處，每一層蛋皮都薄如蟬翼，搭配精品咖啡簡直是午後最極致的享受。」
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-1 bg-brand-accent"></div>
+                        <span class="font-bold tracking-widest text-sm">美食評論家 林小姐</span>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-100 p-10 hover:shadow-2xl transition-shadow relative">
+                    <span class="text-6xl font-serif text-brand-accent/20 absolute top-4 left-4">“</span>
+                    <p class="text-gray-600 mb-8 leading-relaxed italic">
+                        「店內的設計非常大氣且現代，直角的線條給人一種精品店的感覺。早午餐拼盤的食材新鮮度令人驚艷。」
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-1 bg-brand-accent"></div>
+                        <span class="font-bold tracking-widest text-sm">視覺設計師 陳先生</span>
+                    </div>
+                </div>
+
+                <div class="border border-gray-100 p-10 hover:shadow-2xl transition-shadow relative">
+                    <span class="text-6xl font-serif text-brand-accent/20 absolute top-4 left-4">“</span>
+                    <p class="text-gray-600 mb-8 leading-relaxed italic">
+                        「原本不愛吃甜點的男友也讚不絕口。這裡的『甜而不膩』不僅僅是口號，而是真正的味覺體現。」
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-1 bg-brand-accent"></div>
+                        <span class="font-bold tracking-widest text-sm">資深部落客 HANA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁腳 (Footer & Contact) -->
+    <footer id="contact" class="bg-brand-primary text-white pt-24 pb-12 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
+            <!-- 品牌地圖與聯絡 -->
+            <div class="lg:col-span-4">
+                <h4 class="font-serif text-3xl font-black mb-8 tracking-tighter">甜甜膩膩</h4>
+                <div class="space-y-6 text-gray-400 text-sm tracking-widest leading-loose">
+                    <p>地址：台北市大安區精品路 88 號</p>
+                    <p>電話：(02) 1234-5678</p>
+                    <p>營業時間：TUE - SUN / 11:00 - 20:00</p>
+                    <div class="flex gap-6 mt-10">
+                        <a href="#" class="hover:text-brand-accent">INSTAGRAM</a>
+                        <a href="#" class="hover:text-brand-accent">FACEBOOK</a>
+                        <a href="#" class="hover:text-brand-accent">LINE@</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 地圖示意 (Placeholder) -->
+            <div class="lg:col-span-8 h-80 bg-brand-dark relative grayscale">
+                <div class="absolute inset-0 flex items-center justify-center border border-white/10">
+                    <p class="text-xs tracking-[0.5em] text-gray-500 uppercase">MAP PREVIEW • DA-AN DISTRICT</p>
+                </div>
+                <!-- 這裡可以嵌入真實 Google Maps iframe -->
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-[10px] tracking-[0.3em] text-gray-500">© 2024 SWEET & RICH SPECIALTY SHOP. ALL RIGHTS RESERVED.</p>
+            <div class="text-[10px] tracking-[0.3em] text-gray-500 space-x-8">
+                <a href="#" class="hover:text-white">PRIVACY POLICY</a>
+                <a href="#" class="hover:text-white">TERMS OF SERVICE</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 全域固定聯繫按鈕 (Mobile Only) -->
+    <a href="tel:02-1234-5678" class="md:hidden fixed bottom-6 right-6 z-50 bg-brand-accent text-white p-5 shadow-2xl">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+    </a>
+
+</body>
+</html>
+
